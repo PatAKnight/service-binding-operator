@@ -72,4 +72,9 @@ resources:
   webhooks:
     validation: true
     webhookVersion: v1
+- controller: true
+  domain: openshift.io
+  group: config
+  kind: ClusterVersion
+  version: v1
 version: "3"

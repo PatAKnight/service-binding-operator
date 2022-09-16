@@ -28,6 +28,7 @@ import (
 	"github.com/redhat-developer/service-binding-operator/apis/webhooks"
 
 	crdcontrollers "github.com/redhat-developer/service-binding-operator/controllers/crd"
+	clustercontrollers "github.com/redhat-developer/service-binding-operator/controllers/clusterversion"
 
 	"github.com/redhat-developer/service-binding-operator/pkg/client/kubernetes"
 
@@ -50,6 +51,9 @@ import (
 	specv1beta1 "github.com/redhat-developer/service-binding-operator/apis/spec/v1beta1"
 	speccontrollers "github.com/redhat-developer/service-binding-operator/controllers/spec"
 	// +kubebuilder:scaffold:imports
+	configv1 "github.com/openshift/api/config/v1"
+	consolev1alpha1 "github.com/openshift/api/console/v1alpha1"
+
 )
 
 var (
@@ -66,6 +70,9 @@ func init() {
 	utilruntime.Must(v1beta1apiextensions.AddToScheme(scheme))
 	utilruntime.Must(specv1beta1.AddToScheme(scheme))
 	// +kubebuilder:scaffold:scheme
+
+	utilruntime.Must(consolev1alpha1.AddToScheme(scheme))
+	utilruntime.Must(configv1.AddToScheme(scheme))
 }
 
 // getWatchNamespace returns the Namespace the operator should be watching for changes
@@ -176,6 +183,14 @@ func main() {
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr, bindableKinds); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "CRD v1")
+		os.Exit(1)
+	}
+
+	if err = (&clustercontrollers.ClusterVersionReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "ClusterVersion")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder
