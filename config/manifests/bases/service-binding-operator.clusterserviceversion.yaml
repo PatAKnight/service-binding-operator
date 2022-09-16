@@ -5,6 +5,7 @@ metadata:
     alm-examples: '[]'
     capabilities: Basic Install
     categories: Developer Tools, OpenShift Optional, Integration & Delivery
+    console.openshift.io/plugins: '["sbo-demo-plugin"]'
     description: An operator to support binding capabilities between imported apps
       and operator backed services
     repository: https://github.com/redhat-developer/service-binding-operator
@@ -98,4 +99,7 @@ spec:
   provider:
     name: Red Hat
     url: redhat.com
+  relatedImages:
+  - image: quay.io/rh_ee_pknight/sbo-demo-plugin:latest
+    name: sbo-demo-plugin
   version: 0.0.0

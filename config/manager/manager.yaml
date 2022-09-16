@@ -34,6 +34,9 @@ spec:
         - --zap-log-level=info
         image: controller:latest
         name: manager
+        env:
+        - name: RELATED_IMAGE_SBO_DEMO_PLUGIN
+          value: quay.io/rh_ee_pknight/sbo-demo-plugin:latest
         livenessProbe:
           httpGet:
             path: /healthz

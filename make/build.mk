@@ -43,7 +43,7 @@ image:
 
 .PHONY: push-image
 # push operator image to registry
-push-image: image registry-login
+push-image: image 
 	$(CONTAINER_RUNTIME) push "$(OPERATOR_IMAGE_REF)"
 
 .PHONY: bundle-image
@@ -52,7 +52,7 @@ bundle-image: bundle
 	$(CONTAINER_RUNTIME) build -f bundle.Dockerfile -t $(OPERATOR_BUNDLE_IMAGE_REF) .
 
 .PHONY: push-bundle-image
-push-bundle-image: bundle-image registry-login
+push-bundle-image: bundle-image 
 	$(Q)$(CONTAINER_RUNTIME) push $(OPERATOR_BUNDLE_IMAGE_REF)
 	$(Q)operator-sdk bundle validate --select-optional name=operatorhub -b $(CONTAINER_RUNTIME) $(OPERATOR_BUNDLE_IMAGE_REF)
 
@@ -73,7 +73,7 @@ index-image: opm push-bundle-image
 
 .PHONY: push-index-image
 # push index image
-push-index-image: index-image registry-login
+push-index-image: index-image 
 	$(Q)$(CONTAINER_RUNTIME) push $(OPERATOR_INDEX_IMAGE_REF)
 
 .PHONY: deploy-from-index-image

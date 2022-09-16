@@ -21,12 +21,13 @@ import (
 // +kubebuilder:rbac:groups=apiextensions.k8s.io,resources=customresourcedefinitions,verbs=get;list
 // +kubebuilder:rbac:groups=route.openshift.io,resources=routes,verbs=get;list
 // +kubebuilder:rbac:groups="operators.coreos.com",resources=clusterserviceversions,verbs=get;list
-// +kubebuilder:rbac:groups=apps,resources=deployments;daemonsets;replicasets;statefulsets,verbs=get;list;update;patch
+// +kubebuilder:rbac:groups=apps,resources=deployments;daemonsets;replicasets;statefulsets,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups=apps.openshift.io,resources=deploymentconfigs,verbs=get;list;update;patch
-// +kubebuilder:rbac:groups="",resources=pods;secrets;services;endpoints;configmaps,verbs=get;list
+// +kubebuilder:rbac:groups="",resources=pods;secrets;services;endpoints;configmaps,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups="",resources=pods;secrets,verbs=update;patch
 // +kubebuilder:rbac:groups="",resources=secrets,verbs=create
 // +kubebuilder:rbac:groups=servicebinding.io,resources=clusterworkloadresourcemappings,verbs=get
+//+kubebuilder:rbac:groups=console.openshift.io,resources=consoleplugins,verbs=get;list;watch;create;update;patch;delete
 
 var (
 	MaxConcurrentReconciles int

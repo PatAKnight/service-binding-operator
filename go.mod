@@ -7,6 +7,7 @@ require (
 	github.com/golang/mock v1.5.0
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.17.0
+	github.com/openshift/api v0.0.0-20220112145620-704957ce4980
 	github.com/operator-framework/api v0.3.8
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac

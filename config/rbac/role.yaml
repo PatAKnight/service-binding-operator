@@ -15,8 +15,13 @@ rules:
   - secrets
   - services
   verbs:
+  - create
+  - delete
   - get
   - list
+  - patch
+  - update
+  - watch
 - apiGroups:
   - ""
   resources:
@@ -49,10 +54,13 @@ rules:
   - replicasets
   - statefulsets
   verbs:
+  - create
+  - delete
   - get
   - list
   - patch
   - update
+  - watch
 - apiGroups:
   - apps.openshift.io
   resources:
@@ -132,6 +140,18 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - console.openshift.io
+  resources:
+  - consoleplugins
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
 - apiGroups:
   - operators.coreos.com
   resources:
